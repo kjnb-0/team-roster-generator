@@ -16,31 +16,20 @@ describe("Employee", () => {
       expect(employee.role).toEqual("Employee")
     });
 
-    //tests for errors 
-    it("should err if left blank", () => {
-        const cb = () => new Employee();
-        expect(cb).toThrow();
+    //tests 
+    it("can set name, id, email", () => {
+        const setExample = new Employee("Martha",40,"example@example.com")
+        expect(setExample.name).toBe("Martha")
+        expect(setExample.id).toEqual(40)
+        expect(setExample.email).toEqual("example@example.com")
+        expect(setExample.role).toEqual("Employee")
       });
-      it("should err if 'name' is not a string", () => {
-        const cb = () => new Employee(10);
-        const err = new Error("Expected parameter 'name' to be a non-empty string");
-        expect(cb).toThrowError(err);
-      });
-      it("should err if 'id' is negative number", () => {
-        const cb = () => new Employee("Martha", -1);
-        const err = new Error("Expected parameter 'id' to be a non-negative number");
-  
-        expect(cb).toThrowError(err);
-      });
-      it("should err if 'id' is not a number", () => {
-        const cb = () => new Employee("Martha","ID Number");
-        const err = new Error("Expected parameter 'id' to be a non-negative number");
-        expect(cb).toThrowError(err);
-      });
-      it("should err if 'email' is not a string", () => {
-        const cb = () => new Employee("Martha",50,3);
-        const err = new Error("Expected parameter 'email' to be a non-empty string");
-        expect(cb).toThrowError(err);
-      });
-  });
+    it("can get name, id, email, role using getName(), getId(), getEmail(), getRole()", () => {
+        const getExample = new Employee("Martha",40,"example@example.com")
+        expect(getExample.getName()).toBe("Martha")
+        expect(getExample.getId()).toBe(40)
+        expect(getExample.getEmail()).toBe("example@example.com")
+        expect(getExample.getRole()).toBe("Employee")
+    });
   });  
+})
