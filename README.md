@@ -5,8 +5,7 @@
 Build a Node.js (with Jest and Inquirer) command-line application that takes in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person. 
 
 ## Usage Instructions
-video goes here
-
+https://user-images.githubusercontent.com/80792196/130540389-d7fbec07-1ec9-48fc-ab93-32123fea34c3.mp4
 
 ## User Story
 
