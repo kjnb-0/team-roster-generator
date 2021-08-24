@@ -15,7 +15,7 @@ describe("Manager", () => {
         expect(manager.name).toEqual("ExampleName")
         expect(manager.id).toEqual(100)
         expect(manager.email).toEqual("example@example.com")
-        expect(manager.officeNumber).toEqual(4)
+        expect(manager.specific).toEqual(4)
         expect(manager.role).toEqual("Manager")
       });
   
@@ -25,7 +25,7 @@ describe("Manager", () => {
           expect(setExample.name).toBe("Martha")
           expect(setExample.id).toEqual(40)
           expect(setExample.email).toEqual("example@example.com")
-          expect(setExample.officeNumber).toEqual(4)
+          expect(setExample.specific).toEqual(4)
           expect(setExample.role).toEqual("Manager")
         });
       it("can get name, id, email, role using getName(), getId(), getEmail(), getRole()", () => {

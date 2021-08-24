@@ -15,7 +15,7 @@ describe("Intern", () => {
         expect(intern.name).toEqual("ExampleName")
         expect(intern.id).toEqual(100)
         expect(intern.email).toEqual("example@example.com")
-        expect(intern.school).toEqual("school")
+        expect(intern.specific).toEqual("school")
         expect(intern.role).toEqual("Intern")
       });
   
@@ -25,7 +25,7 @@ describe("Intern", () => {
           expect(setExample.name).toBe("Martha")
           expect(setExample.id).toEqual(40)
           expect(setExample.email).toEqual("example@example.com")
-          expect(setExample.school).toEqual("school")
+          expect(setExample.specific).toEqual("school")
           expect(setExample.role).toEqual("Intern")
         });
       it("can get name, id, email, school, role using getName(), getId(), getEmail(), getSchool(), getRole()", () => {

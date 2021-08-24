@@ -88,9 +88,9 @@ function addEmployee() {
 }
 
 function writeFile() {
-  console.log(employeeArray);
 
-  for (i = 0; i < 10; i++) {
+for (i = 0; i < 10; i++) {
+    console.log(employeeArray[i]);
 
     let htmlContent = `<!DOCTYPE html>
     <html lang="en">
@@ -103,11 +103,9 @@ function writeFile() {
     </head>
                                     
     <body>
-    <header class="justify-content-center align-items-center">Team</header>
-
     <div class="row">
     <div class="card justify-content-center align-items-center">
-        <div class="col card-header">
+        <div class="card-header">
             <h4>${employeeArray[i].name}</h4>
         </div>
             <h4>${employeeArray[i].role}</h4 >
@@ -116,7 +114,7 @@ function writeFile() {
             <li class="list-group-item">Email: ${employeeArray[i].email}</li>
             <li class="list-group-item"> ${employeeArray[i].specific}</li>
         </ul>
-    </div > 
+    </div>   
     </div>
     </body>
     </html>`;
