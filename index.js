@@ -7,7 +7,7 @@ const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const Manager = require("./lib/manager");
 
-const employeeArray = []
+const employeeArray = [];
 
 function addEmployee() {
   inquirer
@@ -41,62 +41,92 @@ function addEmployee() {
       //different questions based on role choice
       if (role === "Engineer") {
         specificInfo = await inquirer.prompt([
-          { type: "input", message: "What is your Github?", name: "github" },
+          { type: "input", message: "What is your Github?", name: "specific" },
         ]);
-        let newEmployee = new Engineer(name,id,email,specificInfo.github)
+
+        let newEmployee = new Engineer(name, id, email, specificInfo.specific);
         employeeArray.push(newEmployee);
-        console.log(newEmployee)
       } else if (role === "Intern") {
         specificInfo = await inquirer.prompt([
-          { type: "input", message: "What is your school?", name: "school" },
+          { type: "input", message: "What is your school?", name: "specific" },
         ]);
+
+        let newEmployee = new Intern(name, id, email, specificInfo.specific);
+        employeeArray.push(newEmployee);
       } else {
         specificInfo = await inquirer.prompt([
           {
             type: "input",
             message: "What is your office number?",
-            name: "officeNumber",
+            name: "specific",
           },
         ]);
-      }
-      console.log(specificInfo);
-      let {add} = await inquirer.prompt([
-        { type: "list", message: "Add other employee?", name: "add", choices:["Yes","No"] },
-      ]);
-      console.log(add)
-      if (add === "Yes") {
-          addEmployee()
-      } else {
-          writeFile()
-      }
-    })}
 
-    
-    function writeFile() {
-        console.log(employeeArray)
-      let htmlContent = `<!DOCTYPE html>
+        let newEmployee = new Manager(name, id, email, specificInfo.specific);
+
+        employeeArray.push(newEmployee);
+      }
+
+      let { add } = await inquirer.prompt([
+        {
+          type: "list",
+          message: "Add other employee?",
+          name: "add",
+          choices: ["Yes", "No"],
+        },
+      ]);
+      console.log(add);
+      if (add === "Yes") {
+        addEmployee();
+      } else {
+        writeFile();
+      }
+    })
+    .catch(function () {
+      console.log("Success!");
+    });
+}
+
+function writeFile() {
+  console.log(employeeArray);
+
+  for (i = 0; i < 10; i++) {
+
+    let htmlContent = `<!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Document</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
       <link rel="stylesheet" href="style.css">
+      <title>Team Profiles</title>
     </head>
+                                    
     <body>
-     
+    <header class="justify-content-center align-items-center">Team</header>
+
+    <div class="row">
+    <div class="card justify-content-center align-items-center">
+        <div class="col card-header">
+            <h4>${employeeArray[i].name}</h4>
+        </div>
+            <h4>${employeeArray[i].role}</h4 >
+        <ul class="list-group list-group-flush text">
+            <li class="list-group-item">ID: ${employeeArray[i].id}</li>
+            <li class="list-group-item">Email: ${employeeArray[i].email}</li>
+            <li class="list-group-item"> ${employeeArray[i].specific}</li>
+        </ul>
+    </div > 
+    </div>
     </body>
     </html>`;
 
-      const filename = path.join(__dirname, "dist", "index.html");
+    const filename = path.join(__dirname, "dist", "index.html");
 
-      fs.writeFile(filename, htmlContent, (err) =>
-        err ? console.log(err) : console.log("Success!")
-      );
-    }
+    fs.writeFile(filename, htmlContent, (err) =>
+      err ? console.log(err) : console.log("Success!")
+    );
+  }
+}
 
 addEmployee();
-
-{/* <h1>My name is ${name}</h1>
-<h2>My id is ${id}</h2>
-<h3>My email is ${email}</h3>
-<h4>My Role is ${role}</h4> */}
